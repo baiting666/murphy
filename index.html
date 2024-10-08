@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mosphere - Composing Unique Melodies for Every Scenario</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- 添加图标链接 -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    
+    <!-- 内联样式保持不变 -->
+</head>
+<body>
+    <div id="musicPrompt" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background-color: rgba(0,0,0,0.7); color: white; padding: 10px 20px; border-radius: 20px; z-index: 1001; display: none;">
+        Click the music button to start playing background music
+    </div>
+    <audio id="bgMusic" loop>
+        <source src="Jump Around（1）.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <button id="musicToggle" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">🔇</button>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#home">
+                    <img src="images/mosphere-logo.png" alt="Mosphere Logo">
+                </a>
+            </div>
+            <div class="header-quote">
+                <p>"Music is the universal language of mankind." - Henry Wadsworth Longfellow</p>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#ai-assistant">AI Assistant</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Mosphere — Composing Unique Melodies for Every Scenario</h1>
+                    <p>Mosphere is an innovative music generation software that automatically creates atmosphere-fitting music for different scenarios, filling your life with dynamic melodies.</p>
+                    <a href="#features" class="cta-button">Learn More</a>
+                    
+                    <!-- 删除 AI 播放器部分 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- AI 助手对话框部分 -->
+        <section id="ai-assistant" style="padding-top: 4rem; padding-bottom: 4rem;">
+            <h2>Chat with Mosphere AI Assistant</h2>
+            <div class="chat-container">
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Chat messages will be dynamically added here -->
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="userInput" placeholder="Enter your question...">
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 其他部分保持不变，只需将"墨斯菲尔"替换为"Mosphere" -->
+        
+        <section id="about">
+            <h2>About Us</h2>
+            <div class="about-content">
+                <p>We are a team of musicians and artificial intelligence experts based in Shanghai, China. We are trying to change the world with Mosphere.</p>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us Anytime, We're Here for You</h2>
+            <form class="contact-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+            <div class="contact-info">
+                <p>Email: zhuounuo@gmail.com</p>
+                <p>Phone: +86 19101701777</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="copyright">
+            <p>&copy; 2023 Mosphere. All rights reserved.</p>
+        </div>
+        <div class="social-links">
+            <a href="#" target="_blank"><img src="images/mosphere-logo.png" alt="Weibo"></a>
+            <a href="#" target="_blank"><img src="images/mosphere-logo.png" alt="WeChat"></a>
+            <a href="#" target="_blank"><img src="images/mosphere-logo.png" alt="TikTok"></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <!-- JavaScript 代码 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const bgMusic = document.getElementById('bgMusic');
+            const musicToggle = document.getElementById('musicToggle');
+            const chatMessages = document.getElementById('chatMessages');
+            const userInput = document.getElementById('userInput');
+            const sendButton = document.querySelector('.chat-input button');
+            let isMusicPlaying = false;
+
+            // 背景音乐控制代码保持不变
+            // ...
+
+            // AI 助手功能
+            function addMessage(sender, message) {
+                const messageElement = document.createElement('p');
+                messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+                chatMessages.appendChild(messageElement);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function sendMessage() {
+                const message = userInput.value.trim();
+                if (message !== '') {
+                    addMessage('You', message);
+                    userInput.value = '';
+                    
+                    // 模拟 AI 响应
+                    setTimeout(() => {
+                        addMessage('Mosphere AI', "Thank you for your message! I'm processing your request. How else can I assist you with music today?");
+                    }, 1000);
+                }
+            }
+
+            // 为发送按钮添加点击事件监听器
+            sendButton.addEventListener('click', sendMessage);
+
+            // 为输入框添加回车键事件监听器
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            // AI 助手主动发起对话
+            setTimeout(() => {
+                addMessage('Mosphere AI', "今天你想听什么样的音乐？");
+            }, 2000);  // 2秒后显示欢迎消息
+        });
+    </script>
+</body>
+</html>
